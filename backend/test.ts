@@ -1,3 +1,5 @@
+import { items } from "./mock_LLM_data";
+
 const text = "Hello สวัสดี 👋";
 
 const chunked = ["Hello", " สวัส", "ดี", " 👋🏼"];
@@ -12,8 +14,14 @@ Bun.serve({
         let index = 0;
 
         const intervalId = setInterval(() => {
-          const chunk = chunked[index];
-          const bytes = encoder.encode(chunk);
+          // text
+          // const chunk = chunked[index];
+          // const bytes = encoder.encode(chunk);
+
+          // JSON line
+          const chunk = items[index];
+          const chunkStr = JSON.stringify(chunk);
+          const bytes = encoder.encode(chunkStr);
           controller.enqueue(bytes);
           index += 1;
 
@@ -28,7 +36,12 @@ Bun.serve({
       headers: {
         "Content-Type": "text/plain; charset=utf-8",
         "Transfer-Encoding": "chunked",
+
+        // CORS:
         "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Credentials": "false",
       },
     });
   },
