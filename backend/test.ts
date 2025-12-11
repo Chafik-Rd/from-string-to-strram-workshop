@@ -28,6 +28,7 @@ Bun.serve({
       headers: {
         "Content-Type": "text/plain; charset=utf-8",
         "Transfer-Encoding": "chunked",
+        "Access-Control-Allow-Origin": "*",
       },
     });
   },
