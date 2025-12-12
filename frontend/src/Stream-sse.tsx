@@ -20,6 +20,7 @@ export function StreamSSE() {
     setIsLoading(true);
     setText("");
 
+    // use EventSource
     const eventSource = new EventSource("http://localhost:3000/sse");
 
     eventSource.addEventListener("chat_delta", (event) => {
@@ -46,7 +47,7 @@ export function StreamSSE() {
 
   return (
     <div className="text-center">
-      <h1 className="text-3xl my-4">Stream SSE</h1>
+      <h1 className="text-3xl my-4">Stream SSE (EventSource)</h1>
       <button
         type="button"
         onClick={startStream}

@@ -9,6 +9,7 @@ import {
 import { StreamJSONLine } from "./Stream-json-line";
 import { StreamText } from "./Stream-text";
 import { StreamSSE } from "./Stream-sse";
+import { StreamSSE2 } from "./Stream-sse2";
 
 const rootRoute = createRootRoute({
   component: () => (
@@ -18,10 +19,19 @@ const rootRoute = createRootRoute({
           <button className="p-2 bg-blue-200 rounded-xl">Stream Text</button>
         </Link>
         <Link to="/stream-json-line">
-          <button className="p-2 bg-orange-200 rounded-xl">Stream JSON line</button>
+          <button className="p-2 bg-orange-200 rounded-xl">
+            Stream JSON line
+          </button>
         </Link>
         <Link to="/stream-sse">
-          <button className="p-2 bg-green-200 rounded-xl">Stream SSE</button>
+          <button className="p-2 bg-green-200 rounded-xl">
+            Stream SSE(EventSource)
+          </button>
+        </Link>
+        <Link to="/stream-sse2">
+          <button className="p-2 bg-green-200 rounded-xl">
+            Stream SSE(fetch)
+          </button>
         </Link>
       </div>
       <hr />
@@ -45,6 +55,11 @@ const routeTree = rootRoute.addChildren([
     getParentRoute: () => rootRoute,
     path: "/stream-sse",
     component: StreamSSE,
+  }),
+  new Route({
+    getParentRoute: () => rootRoute,
+    path: "/stream-sse2",
+    component: StreamSSE2,
   }),
 ]);
 
