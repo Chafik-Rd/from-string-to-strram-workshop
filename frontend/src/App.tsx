@@ -8,6 +8,7 @@ import {
 } from "@tanstack/react-router";
 import { StreamJSONLine } from "./Stream-json-line";
 import { StreamText } from "./Stream-text";
+import { StreamSSE } from "./Stream-sse";
 
 const rootRoute = createRootRoute({
   component: () => (
@@ -18,6 +19,9 @@ const rootRoute = createRootRoute({
         </Link>
         <Link to="/stream-json-line">
           <button className="p-2 bg-orange-200 rounded-xl">Stream JSON line</button>
+        </Link>
+        <Link to="/stream-sse">
+          <button className="p-2 bg-green-200 rounded-xl">Stream SSE</button>
         </Link>
       </div>
       <hr />
@@ -36,6 +40,11 @@ const routeTree = rootRoute.addChildren([
     getParentRoute: () => rootRoute,
     path: "/",
     component: StreamText,
+  }),
+  new Route({
+    getParentRoute: () => rootRoute,
+    path: "/stream-sse",
+    component: StreamSSE,
   }),
 ]);
 
